@@ -1,0 +1,16 @@
+{
+    "name": "uphp/exception",
+    "description": "Este pacote serve para adicionar inflection irregular ao uphp",
+    "authors": [ 
+        {
+            "name": "Diego Bentes",
+            "email": "diegopbentes@gmail.com"
+        }
+    ],    
+    "require": {
+         "php": ">=7.0.0"
+    },
+    "autoload": {
+        "files": ["src/Exception.php"]
+    }
+ }
