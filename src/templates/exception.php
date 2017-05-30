@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>UPhp Exception :: RuntimeError</title>
 
     <!-- Bootstrap -->
     <link href="../src/assets/css/normalize.css" rel="stylesheet">
@@ -38,51 +38,12 @@
                     </div>
                     <div class="panel-body">
                         <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                <h4 class="list-group-item-heading active">HomeController#Index</h4>
-                                <p class="list-group-item-text active">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">HomeController#Index</h4>
-                                <p class="list-group-item-text">app/uphp/controllers/home_controller.php, line 3</p>
-                            </a>
+                            {{ TRACE }}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">.col-md-6</div>
+            <div class="col-md-6">{{ PREVIUS }}</div>
         </div>
     </div>
 

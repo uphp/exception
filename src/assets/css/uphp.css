@@ -66,6 +66,11 @@
 }
 
 /*LIST GROUP*/
+.list-group {
+  padding-left: 0;
+  margin-bottom: 0px;
+}
+
 .list-group-item-heading.active{
     color: #ffffff;
     text-shadow: 1px 1px #333333;

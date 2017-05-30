@@ -4,18 +4,43 @@
     class UphpException extends \Exception{
         
         public function __construct($e){
+            parent::__construct($e);
             $page = $this->getTemplate("templates/exception.php");
-            $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($e->getMessage()), $page);
+            $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($e), $page);
+            $page = str_replace("{{ TRACE }}", self::makeTrace($e), $page);
+            $page = str_replace("{{ PREVIUS }}", self::getCodeBlock($e), $page);
             echo $page;
         }
 
-        public static function makeTitle($msg){
+        private static function getCodeBlock(\Exception $e){
+            $myFile = $e->getTrace()[0]["file"];
+            $lines = file($myFile);//file in to an array
+            return $lines[($e->getTrace()[0]["line"] - 1)]; //line 2
+        }
+
+        private static function makeTitle(\Exception $e)
+        {
             $strReturn = "";
-            $strReturn .= "<span class=\"uphp-class-error\">GenericError</span>";
-            $strReturn .= "<span class=\"uphp-path-error\"> at ".__FILE__."</span>";
-            $strReturn .= "<span class=\"uphp-on-line\"> on line 50</span>";
+            $strReturn .= "<span class=\"uphp-class-error\">Exception throw</span>";
+            $strReturn .= "<span class=\"uphp-path-error\"> at ".$e->getFile()."</span>";
+            $strReturn .= "<span class=\"uphp-on-line\"> on line ".$e->getLine()."</span>";
             $strReturn .= "<br>";
-            $strReturn .= "<span class=\"uphp-exception-class\">".$msg."</span>";
+            $strReturn .= "<span class=\"uphp-exception-class\">".$e->getCode()." :: ".$e->getMessage()."</span>";
+            return $strReturn;
+        }
+
+        private static function makeTrace(\Exception $e)
+        {
+            $strReturn = "";
+            $i = 1;
+            foreach( $e->getTrace() as $trace){ 
+                $i == 1 ? $class = "active" : $class = "";
+                $strReturn .= "<a href=\"#\" class=\"list-group-item ".$class."\">";
+                $strReturn .= "<h4 class=\"list-group-item-heading ".$class."\">".$trace["function"]."</h4>";
+                $strReturn .= "<p class=\"list-group-item-text ".$class."\">".$trace["file"].", line ".$trace["line"]."</p>";
+                $strReturn .= "</a>";
+                $i++;
+            }
             return $strReturn;
         }
 
