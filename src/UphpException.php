@@ -4,18 +4,25 @@
     class UphpException extends \Exception{
         
         public function __construct($e){
-            parent::__construct($e);
+            //parent::__construct($e);
             $page = $this->getTemplate("templates/exception.php");
             $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($e), $page);
             $page = str_replace("{{ TRACE }}", self::makeTrace($e), $page);
-            $page = str_replace("{{ PREVIUS }}", self::getCodeBlock($e), $page);
+            $page = str_replace("{{ PREVIOUS }}", self::getCodeBlock($e), $page);
             echo $page;
         }
 
         private static function getCodeBlock(\Exception $e){
             $myFile = $e->getTrace()[0]["file"];
             $lines = file($myFile);//file in to an array
-            return $lines[($e->getTrace()[0]["line"] - 1)]; //line 2
+            //return $lines[($e->getTrace()[0]["line"] - 1)]; //line 2
+            //return $lines;
+            $str = "";
+            foreach($lines as $line){
+                $str .= $line;
+            }
+            //var_dump($str);
+            return $str;
         }
 
         private static function makeTitle(\Exception $e)

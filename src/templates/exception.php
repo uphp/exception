@@ -11,6 +11,7 @@
     <link href="../src/assets/css/normalize.css" rel="stylesheet">
     <link href="../src/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../src/assets/css/uphp.css" rel="stylesheet">
+    <link href="../src/assets/plugins/prism/prism.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +44,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">{{ PREVIUS }}</div>
+            <div class="col-md-6">
+            
+                <pre data-line="1" class="line-numbers"><code class="language-php">{{ PREVIOUS }}</code></pre>
+            
+            </div>
         </div>
     </div>
 
@@ -51,5 +56,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../src/assets/js/bootstrap.min.js"></script>
+    <script src="../src/assets/plugins/prism/prism.js"></script>
   </body>
 </html>
