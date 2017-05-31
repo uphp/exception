@@ -8,6 +8,7 @@
         
         public function __construct($msg = "", $type = "")
         {
+            ini_set('display_errors', false);
             parent::__construct($msg);
             $page = self::getTemplate("templates/exception.php");
 
@@ -33,7 +34,7 @@
         private static function makeTitle(\Exception $e, string $type)
         {
             $strReturn = "";
-            $strReturn .= "<span class=\"uphp-type-error\">PHP " . $type . "</span>";
+            $strReturn .= "<span class=\"uphp-type-error\">" . $type . "</span>";
             $strReturn .= "<span class=\"uphp-exception-error\"> - " . self::getClassName() . "</span>";
             $strReturn .= "<br>";
             $strReturn .= "<span class=\"uphp-message-error\">".$e->getMessage()."</span>";
