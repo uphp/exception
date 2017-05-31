@@ -1,26 +1,23 @@
 body{
-  background: #f0f0f5;
+  background: #ffffff;
 }
 /* UPHP NAVBARS */
 .navbar {
-  background-color: #20202a;
+  background-color: #f3f3f3;
   height: 150px;
+  border-bottom: 1px solid #cccccc;
 }
-.navbar .uphp-class-error {
-    color: #dd5555;
-    font-weight: bold;
+.navbar .uphp-type-error {
+    color: #c53f57;
     font-size: 25px;
-    text-shadow: 1px 1px #000000;
 }
-.navbar .uphp-path-error {
-    color: #aaaaaa;
+.navbar .uphp-exception-error {
+    color: #d68693;
     font-size: 25px;
-    text-shadow: 1px 1px #000000;
 }
-.navbar .uphp-exception-class{
-    color: #ffffff;
-    font-size: 35px;
-    text-shadow: 2px 2px #000000;
+.navbar .uphp-message-error{
+    color: #6a7577;
+    font-size: 20px;
 }
 .navbar .uphp-on-line{
     color: #cccccc;
@@ -34,29 +31,30 @@ body{
 
 /* UPHP PANELS */
 .panel {
-  border-color: #ddd;
-  box-shadow: 5px 5px 3px #888888;
+  /*border-color: #ddd;*/
+  /*box-shadow: 5px 5px 3px #888888;*/
 }
 .panel-heading {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;  
+  cursor: pointer;
+  /*border-top-left-radius: 3px;
+  border-top-right-radius: 3px; */ 
 }
 .panel > .panel-heading {
   color: #333;
-  background-color: #eeeeee;
-  border-color: #ddd;
-  border-top: 6px solid #aa3333;
+  background-color: #fafafa;
+  /*border-color: #ddd;*/
+  /*border-top: 6px solid #aa3333;*/
 }
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 16px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   color: #999999;
-  text-shadow: 1px 1px #ffffff;
-  text-align: center;
+  /*text-shadow: 1px 1px #ffffff;
+  text-align: center;*/
 }
 .panel-body {
   padding: 0px;

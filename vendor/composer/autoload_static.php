@@ -7,7 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit89bfe38c42e3d6c115985a6afe54a973
 {
     public static $files = array (
-        '2f3bedcf987f26d8345b33490f8f998a' => __DIR__ . '/../..' . '/src/Exception.php',
+        '6bb07ad27698860df73027426bbd25ee' => __DIR__ . '/../..' . '/src/UphpException.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -11,7 +11,7 @@
     <link href="../src/assets/css/normalize.css" rel="stylesheet">
     <link href="../src/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../src/assets/css/uphp.css" rel="stylesheet">
-    <link href="../src/assets/plugins/prism/prism.css" rel="stylesheet">
+    <link href="../src/assets/plugins/prism/prism_coy.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,39 +24,23 @@
     
     <nav class="navbar">
         <div class="container-fluid">
+            <div style="float: right;"><img width="60" height="60" style="margin-top: 40px; margin-right: 30px;" src="../src/assets/images/error_icon.png"></div>
             <div class="navbar-header">
+                
                 {{ TOP-TITLE }}
             </div>
         </div>
     </nav>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Trace PHP</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="list-group">
-                            {{ TRACE }}
-                        </div>
-                    </div>
-                </
-                div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">            
-                <pre data-line="{{ LINE }}" class="line-numbers code-box-style" style="margin-top: -1px;"><code class="language-php">{{ PREVIOUS }}</code></pre>            
-            </div>
-        </div>
+        {{ TRACE }}
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../src/assets/js/bootstrap.min.js"></script>
-    <script src="../src/assets/plugins/prism/prism.js"></script>
+    <script src="../src/assets/plugins/prism/prism_coy.js"></script>
+    <script src="../src/assets/js/custom.js"></script>
   </body>
 </html>

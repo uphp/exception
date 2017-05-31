@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '2f3bedcf987f26d8345b33490f8f998a' => $baseDir . '/src/Exception.php',
+    '6bb07ad27698860df73027426bbd25ee' => $baseDir . '/src/UphpException.php',
 );
