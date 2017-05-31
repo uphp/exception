@@ -42,12 +42,13 @@
                             {{ TRACE }}
                         </div>
                     </div>
-                </div>
+                </
+                div>
             </div>
-            <div class="col-md-6">
-            
-                <pre data-line="1" class="line-numbers"><code class="language-php">{{ PREVIOUS }}</code></pre>
-            
+        </div>
+        <div class="row">
+            <div class="col-md-12">            
+                <pre data-line="{{ LINE }}" class="line-numbers code-box-style" style="margin-top: -1px;"><code class="language-php">{{ PREVIOUS }}</code></pre>            
             </div>
         </div>
     </div>

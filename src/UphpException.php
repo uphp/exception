@@ -3,36 +3,33 @@
 
     class UphpException extends \Exception{
         
-        public function __construct($e){
-            //parent::__construct($e);
-            $page = $this->getTemplate("templates/exception.php");
-            $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($e), $page);
-            $page = str_replace("{{ TRACE }}", self::makeTrace($e), $page);
-            $page = str_replace("{{ PREVIOUS }}", self::getCodeBlock($e), $page);
+        public function __construct($msg = ""){
+            parent::__construct($msg);
+            $page = self::getTemplate("templates/exception.php");
+            $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($this), $page);
+            $page = str_replace("{{ TRACE }}", self::makeTrace($this), $page);
+            $page = str_replace("{{ LINE }}", self::getLineTrace($this), $page);
+            $page = str_replace("{{ PREVIOUS }}", self::getCodeBlock($this), $page);
+            
             echo $page;
         }
 
         private static function getCodeBlock(\Exception $e){
-            $myFile = $e->getTrace()[0]["file"];
-            $lines = file($myFile);//file in to an array
-            //return $lines[($e->getTrace()[0]["line"] - 1)]; //line 2
-            //return $lines;
-            $str = "";
-            foreach($lines as $line){
-                $str .= $line;
-            }
-            //var_dump($str);
-            return $str;
+            return str_replace("<?php", "", file_get_contents($e->getTrace()[0]["file"]));
         }
 
-        private static function makeTitle(\Exception $e)
-        {
+        private static function getLineTrace(\Exception $e){
+            return $e->getTrace()[0]["line"];
+        }
+
+        private static function makeTitle(\Exception $e)        {
             $strReturn = "";
             $strReturn .= "<span class=\"uphp-class-error\">Exception throw</span>";
             $strReturn .= "<span class=\"uphp-path-error\"> at ".$e->getFile()."</span>";
-            $strReturn .= "<span class=\"uphp-on-line\"> on line ".$e->getLine()."</span>";
+            //$strReturn .= "<span class=\"uphp-on-line\"> on line ".$e->getLine()."</span>";
             $strReturn .= "<br>";
-            $strReturn .= "<span class=\"uphp-exception-class\">".$e->getCode()." :: ".$e->getMessage()."</span>";
+            //$strReturn .= "<span class=\"uphp-exception-class\">".$e->getCode()." :: ".$e->getMessage()."</span>";
+            $strReturn .= "<span class=\"uphp-exception-class\">".$e->getMessage()."</span>";
             return $strReturn;
         }
 
@@ -51,7 +48,7 @@
             return $strReturn;
         }
 
-        private function getTemplate($file) {
+        private static function getTemplate($file) {
 
 		    ob_start(); // start output buffer
 		    include $file;

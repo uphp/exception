@@ -1,8 +1,10 @@
+body{
+  background: #f0f0f5;
+}
 /* UPHP NAVBARS */
 .navbar {
   background-color: #20202a;
   height: 150px;
-  /*border-color: #e7e7e7;*/
 }
 .navbar .uphp-class-error {
     color: #dd5555;
@@ -33,6 +35,7 @@
 /* UPHP PANELS */
 .panel {
   border-color: #ddd;
+  box-shadow: 5px 5px 3px #888888;
 }
 .panel-heading {
   padding: 10px 15px;
@@ -95,4 +98,10 @@
   color: #fff;
   background-color: #337ab7;
   border-color: #337ab7;
+}
+
+/* CODE FILE */
+.code-box-style{
+  margin-top: -1px;
+  box-shadow: 5px 5px 3px #888888;
 }
