@@ -24,7 +24,7 @@
     
     <nav class="navbar">
         <div class="container">
-            <div style="float: right;"><img width="60" height="60" style="margin-top: 40px; margin-right: 30px;" src="../src/assets/images/error_icon.png"></div>
+            <div style="float: right;"><img width="60" height="60" style="margin-top: 40px; margin-right: 30px;" src="/vendor/uphp/exception/src/assets/images/error_icon.png"></div>
             <div class="navbar-header">
                 {{ TOP-TITLE }}
             </div>

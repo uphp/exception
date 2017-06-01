@@ -2,23 +2,31 @@
     namespace src;
     
     require("errorHadler.php");
+    set_exception_handler("src\uphpExceptionHandler");
     set_error_handler("src\uphpErrorHandler");
+    
 
     class UphpException extends \Exception
     {
         
-        public function __construct($msg = "", $type = "")
+        public function __construct( $msg = "", $type = "", $exObj = NULL )
         {
             ini_set('display_errors', false);
             parent::__construct($msg);
             $page = self::getTemplate("templates/exception.php");
 
-            $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($this, $type), $page);
-            $page = str_replace("{{ TRACE }}", self::makeTrace($this), $page);
+            if ( $exObj == NULL ) {
+                $object = $this;
+            } else {
+                $object = $exObj;
+            }
+
+            $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($object, $type), $page);
+            $page = str_replace("{{ TRACE }}", self::makeTrace($object), $page);
             echo $page;
         }
 
-        private static function getCodeBlock(string $file, int $referenceLine)
+        private static function getCodeBlock( string $file, int $referenceLine )
         {
             $lines = file($file);
             $i = 1;
@@ -32,7 +40,7 @@
             return str_replace("<?php", "", $fileStr);
         }
 
-        private static function makeTitle(\Exception $e, string $type)
+        private static function makeTitle( $e, string $type )
         {
             $strReturn = "<span class=\"uphp-type-error\">" . $type . "</span>";
             $strReturn .= "<span class=\"uphp-exception-error\"> - " . self::getClassName() . "</span>";
@@ -41,7 +49,7 @@
             return $strReturn;
         }
 
-        private static function makeTrace(\Exception $e)
+        private static function makeTrace( $e )
         {
             $strReturn = "";
             $i = 1;

@@ -3,10 +3,12 @@ namespace src;
     
 function uphpErrorHandler ($errno , $errstr , $errfile , $errline)
 {
+
     ini_set('display_errors', false);
     if (!(error_reporting() & $errno)) {
         return;
     }
+
 
     $errorType = array (
         E_ERROR => 'PHP Error',
@@ -31,4 +33,9 @@ function uphpErrorHandler ($errno , $errstr , $errfile , $errline)
     }
 
     throw new UphpException($errstr, $errTypeStr);
+}
+
+function uphpExceptionHandler($ex)
+{
+    throw new UphpException($ex->getMessage(), "Caught Exception", $ex);
 }
