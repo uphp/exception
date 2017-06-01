@@ -1,6 +1,6 @@
 {
     "name": "uphp/exception",
-    "description": "Este pacote serve para adicionar inflection irregular ao uphp",
+    "description": "Este pacote serve para adicionar UphpException ao uphp",
     "authors": [ 
         {
             "name": "Diego Bentes",
