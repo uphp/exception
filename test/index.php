@@ -14,8 +14,7 @@
     class ActiveRecord{
         public function save(){
             $a = 0;
-            throw new RecordNotFoundException();
-            //echo 1/$a;            
+            echo 1/$a;            
         }
     }
 
