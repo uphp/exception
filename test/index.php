@@ -11,8 +11,10 @@
         }
     }
 
-    class ActiveRecord{
-        public function save(){
+    class ActiveRecord
+    {
+        public function save()
+        {
             $a = 0;
             echo 1/$a;            
         }

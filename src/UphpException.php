@@ -4,7 +4,8 @@
     require("../src/errorHadler.php");
     set_error_handler("src\uphpErrorHandler");
 
-    class UphpException extends \Exception{
+    class UphpException extends \Exception
+    {
         
         public function __construct($msg = "", $type = "")
         {
@@ -22,8 +23,8 @@
             $lines = file($file);
             $i = 1;
             $fileStr = "";
-            foreach($lines as $line){
-                if($i >= ($referenceLine - 10) && $i <= ($referenceLine + 10)){
+            foreach ($lines as $line) {
+                if ($i >= ($referenceLine - 10) && $i <= ($referenceLine + 10)) {
                     $fileStr .= $line;
                 }
                 $i++;
@@ -33,11 +34,10 @@
 
         private static function makeTitle(\Exception $e, string $type)
         {
-            $strReturn = "";
-            $strReturn .= "<span class=\"uphp-type-error\">" . $type . "</span>";
+            $strReturn = "<span class=\"uphp-type-error\">" . $type . "</span>";
             $strReturn .= "<span class=\"uphp-exception-error\"> - " . self::getClassName() . "</span>";
             $strReturn .= "<br>";
-            $strReturn .= "<span class=\"uphp-message-error\">".$e->getMessage()."</span>";
+            $strReturn .= "<span class=\"uphp-message-error\">" . $e->getMessage() . "</span>";
             return $strReturn;
         }
 
@@ -45,9 +45,9 @@
         {
             $strReturn = "";
             $i = 1;
-            foreach( $e->getTrace() as $trace){
+            foreach ( $e->getTrace() as $trace) {
 
-                if(($trace["line"] - 11) > 1) {
+                if (($trace["line"] - 11) > 1) {
                     $dataLineOffset = "data-line-offset=\"" . ($trace["line"] - 11) . "\"";
                     $dataStart = ($trace["line"] - 10);
                 } else {
@@ -55,10 +55,10 @@
                      $dataStart = 1;
                 }               
 
-                if($i == 1) {
+                if ($i == 1) {
                     $control = "OPEN";
                     $display = "style=\"display: block;\"";
-                }else{
+                } else {
                     $control = "CLOSE";
                     $display = "style=\"display: none;\"";
                 }
@@ -83,13 +83,11 @@
 
         private static function getTemplate($file)
         {
-
 		    ob_start(); // start output buffer
 		    include $file;
 		    $template = ob_get_contents(); // get contents of buffer
 		    ob_end_clean();
 		    return $template;
-
 		}
 
         private static function getClassName()
