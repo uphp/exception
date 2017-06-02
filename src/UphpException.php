@@ -24,6 +24,7 @@
             $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($object, $type), $page);
             $page = str_replace("{{ TRACE }}", self::makeTrace($object), $page);
             echo $page;
+            exit;
         }
 
         private static function getCodeBlock( string $file, int $referenceLine )
