@@ -1,10 +1,6 @@
 <?php
-    namespace src;
-    
-    require("errorHadler.php");
-    set_exception_handler("src\uphpExceptionHandler");
-    set_error_handler("src\uphpErrorHandler");
-    
+    namespace src;    
+    require("errorHadler.php");    
 
     class UphpException extends \Exception
     {
