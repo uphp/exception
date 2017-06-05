@@ -1,24 +1,24 @@
-<?php    
-    namespace test;
+<?php
+namespace test;
 
-    require("../src/UphpException.php");
+require("../src/UphpException.php");
 
-    class RecordNotFoundException extends \src\UphpException 
+class RecordNotFoundException extends \src\UphpException
+{
+    public function __construct()
     {
-        public function __construct()
-        {
-            parent::__construct("Record not found", "UPhp ActiveRecord");
-        }
+        parent::__construct("Record not found", "UPhp ActiveRecord");
     }
+}
 
-    class ActiveRecord
+class ActiveRecord
+{
+    public function save()
     {
-        public function save()
-        {
-            $a = 0;
-            echo 1/$a;            
-        }
+        $a = 0;
+        echo 1/$a;
     }
+}
 
-    $a = new ActiveRecord();
-    $a->save();
+$a = new ActiveRecord();
+$a->save();

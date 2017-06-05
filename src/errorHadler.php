@@ -1,11 +1,11 @@
 <?php
 namespace src;
     
-function uphpErrorHandler ($errno , $errstr , $errfile , $errline)
+function uphpErrorHandler($errno, $errstr, $errfile, $errline)
 {
 
     ini_set('display_errors', false);
-    if (!(error_reporting() & $errno)) {
+    if (! (error_reporting() & $errno)) {
         return;
     }
 
