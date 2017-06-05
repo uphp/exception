@@ -20,6 +20,7 @@ class UphpException extends \Exception
 
         $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($object, $type), $page);
         $page = str_replace("{{ TRACE }}", self::makeTrace($object), $page);
+        ob_clean();
         echo $page;
         exit;
     }
