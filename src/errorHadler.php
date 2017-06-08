@@ -3,12 +3,11 @@ namespace src;
     
 function uphpErrorHandler($errno, $errstr, $errfile, $errline)
 {
+    echo "Numero: " . $errno . "| Texto: " . $errstr . "| Arquivo: " . $errfile . "| Linha: " . $errline;
 
-    ini_set('display_errors', false);
     if (! (error_reporting() & $errno)) {
         return;
     }
-
 
     $errorType = array (
         E_ERROR => 'PHP Error',

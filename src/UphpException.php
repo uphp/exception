@@ -20,23 +20,29 @@ class UphpException extends \Exception
 
         $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($object, $type), $page);
         $page = str_replace("{{ TRACE }}", self::makeTrace($object), $page);
-        ob_clean();
+        //ob_clean();
         echo $page;
         exit;
     }
 
-    private static function getCodeBlock(string $file, int $referenceLine)
+    private static function getCodeBlock(string $file = null, int $referenceLine = null)
     {
-        $lines = file($file);
-        $i = 1;
-        $fileStr = "";
-        foreach ($lines as $line) {
-            if ($i >= ($referenceLine - 10) && $i <= ($referenceLine + 10)) {
-                $fileStr .= $line;
+        if (! $file == null) {
+            $lines = file($file);
+            $i = 1;
+            $fileStr = "";
+            foreach ($lines as $line) {
+                if ($referenceLine == null) {
+                    break;
+                }
+                if ($i >= ($referenceLine - 10) && $i <= ($referenceLine + 10)) {
+                    $fileStr .= $line;
+                    //echo $line;
+                }
+                $i++;
             }
-            $i++;
+            return str_replace("<?php", "--- PHP OPEN TAG ---", $fileStr);
         }
-        return str_replace("<?php", "", $fileStr);
     }
 
     private static function makeTitle($e, string $type)
@@ -52,38 +58,58 @@ class UphpException extends \Exception
     {
         $strReturn = "";
         $i = 1;
+        $control = false;
+        
         foreach ($e->getTrace() as $trace) {
-            if (($trace["line"] - 11) > 1) {
-                $dataLineOffset = "data-line-offset=\"" . ($trace["line"] - 11) . "\"";
-                $dataStart = ($trace["line"] - 10);
-            } else {
-                $dataLineOffset = "";
-                $dataStart = 1;
-            }
+            if (isset($trace["line"])) {
+                $traceFile = str_replace("\\", "/", $trace["file"]);
+                $ar = explode("/", $traceFile);
+                $fr = end($ar);
+                
+                //echo $e->uphpFile;
+                if (isset($e->uphpFile)) {
+                    if ($e->uphpFile != null) {
+                        if (! $control) {
+                            if ($e->file != $fr) {
+                                $control = true;
+                                continue;
+                            }
+                        }
+                    }
+                }
 
-            if ($i == 1) {
-                $control = "OPEN";
-                $display = "style=\"display: block;\"";
-            } else {
-                $control = "CLOSE";
-                $display = "style=\"display: none;\"";
-            }
+                if (($trace["line"] - 11) >= 1) {
+                    $dataLineOffset = "data-line-offset=\"" . ($trace["line"] - 11) . "\"";
+                    $dataStart = ($trace["line"] - 10);
+                } else {
+                    $dataLineOffset = "";
+                    $dataStart = 1;
+                }
 
-            $strReturn .= "<div class=\"row\">";
-                $strReturn .= "<div class=\"col-md-12\">";
-                    $strReturn .= "<div class=\"panel\">";
-                        $strReturn .= "<div class=\"panel-heading\" onclick=\"closeOpen($(this))\" control=\"" . $control . "\">";
-                            $strReturn .= "<h3 class=\"panel-title\">" . $i . ". in " . $trace["file"] . " at line " . $trace["line"] . "</h3>";
-                        $strReturn .= "</div>";
-                        $strReturn .= "<div " . $display . "class=\"panel-body\" >";
-                            $strReturn .= "<pre " . $dataLineOffset . " data-start=\"" . $dataStart . "\" data-line=\"" . $trace["line"] . "\" class=\"line-numbers\"><code class=\"language-php\">" . self::getCodeBlock($trace["file"], $trace["line"]) . "</code></pre>";
+                if ($i == 1) {
+                    $control = "OPEN";
+                    $display = "style=\"display: block;\"";
+                } else {
+                    $control = "CLOSE";
+                    $display = "style=\"display: none;\"";
+                }
+
+                $strReturn .= "<div class=\"row\">";
+                    $strReturn .= "<div class=\"col-md-12\">";
+                        $strReturn .= "<div class=\"panel\">";
+                            $strReturn .= "<div class=\"panel-heading\" onclick=\"closeOpen($(this))\" control=\"" . $control . "\">";
+                                $strReturn .= "<h3 class=\"panel-title\">" . $i . ". in " . $trace["file"] . " at line " . $trace["line"] . "</h3>";
+                            $strReturn .= "</div>";
+                            $strReturn .= "<div " . $display . "class=\"panel-body\" >";
+                                $strReturn .= "<pre " . $dataLineOffset . " data-start=\"" . $dataStart . "\" data-line=\"" . $trace["line"] . "\" class=\"line-numbers\"><code class=\"language-php\">" . self::getCodeBlock($trace["file"], $trace["line"]) . "</code></pre>";
+                            $strReturn .= "</div>";
                         $strReturn .= "</div>";
                     $strReturn .= "</div>";
                 $strReturn .= "</div>";
-            $strReturn .= "</div>";
-
+            }
             $i++;
         }
+        
         return $strReturn;
     }
 
