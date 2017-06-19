@@ -13,11 +13,11 @@ body{
 }
 .navbar .uphp-type-error {
     color: #c53f57;
-    font-size: 40px;
+    font-size: 25px;
 }
 .navbar .uphp-exception-error {
     color: #d68693;
-    font-size: 40px;
+    font-size: 25px;
 }
 .navbar .uphp-message-error{
     color: #6a7577;

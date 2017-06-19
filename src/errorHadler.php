@@ -3,7 +3,7 @@ namespace src;
     
 function uphpErrorHandler($errno, $errstr, $errfile, $errline)
 {
-    echo "Numero: " . $errno . "| Texto: " . $errstr . "| Arquivo: " . $errfile . "| Linha: " . $errline;
+    //echo "Numero: " . $errno . "| Texto: " . $errstr . "| Arquivo: " . $errfile . "| Linha: " . $errline;
 
     if (! (error_reporting() & $errno)) {
         return;

@@ -20,7 +20,7 @@ class UphpException extends \Exception
 
         $page = str_replace("{{ TOP-TITLE }}", self::makeTitle($object, $type), $page);
         $page = str_replace("{{ TRACE }}", self::makeTrace($object), $page);
-        //ob_clean();
+        ob_clean();
         echo $page;
         exit;
     }
@@ -41,7 +41,11 @@ class UphpException extends \Exception
                 }
                 $i++;
             }
-            return str_replace("<?php", "--- PHP OPEN TAG ---", $fileStr);
+            $returnBlock = str_replace("<?php", "", $fileStr);
+            $returnBlock = str_replace("<?=", "", $returnBlock);
+            $returnBlock = str_replace("<?", "", $returnBlock);
+            $returnBlock = str_replace("?>", "", $returnBlock);
+            return $returnBlock;
         }
     }
 
